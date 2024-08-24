@@ -11,8 +11,9 @@ namespace ConsoleApp1
             string bookName=GetBookName();
             string authorNmae=GetAuthorName(library);
             long isbnNumber=Getisbnnumber(library);
+            string bookType=GetType(library);
 
-            Book book=new Book(bookName,authorNmae,isbnNumber);
+            Book book=new Book(bookName,authorNmae,isbnNumber,bookType);
             library.AddBook(book);
 
         }
@@ -47,6 +48,30 @@ namespace ConsoleApp1
                     Console.WriteLine("Error|Isbn number should have numbers only");
 
                 }
+            }
+        }
+
+        public static string GetType(Library library){
+            while(true){
+                try{
+                    Console.WriteLine("1)Fiction");
+                    Console.WriteLine("2)Biography");
+                    Console.WriteLine("3)History");
+                    Console.WriteLine("4)Technology");
+                    Console.WriteLine("5)Social Sciences");
+                    Console.WriteLine("6)Humanities");
+                    Console.WriteLine("7)Encyclopedias");
+                    Console.WriteLine("8)Atlases");
+                    Console.WriteLine("Enter Type of Book:");
+                    int booktype =int.Parse(Console.ReadLine());
+                    if(library.getbooktype(booktype)!="-1"){
+                        return library.getbooktype(booktype);
+                    }
+                }catch(FormatException){
+                    Console.WriteLine("Error| you can enter only numbers");
+                }
+
+
             }
         }
 
