@@ -10,7 +10,7 @@ namespace ConsoleApp1
             Library library=new Library();
             string bookName=GetBookName();
             string authorNmae=GetAuthorName(library);
-            int isbnNumber=Getisbnnumber();
+            long isbnNumber=Getisbnnumber(library);
 
             Book book=new Book(bookName,authorNmae,isbnNumber);
             library.AddBook(book);
@@ -34,11 +34,14 @@ namespace ConsoleApp1
                 }
             }
         }
-        public static int Getisbnnumber(){
+        public static long Getisbnnumber(Library library){
             while(true){
                 try{
                     Console.WriteLine("Enter ISBN number");
-                    return int.Parse(Console.ReadLine());
+                    long isbnNumber=long.Parse(Console.ReadLine());
+                    if(library.checkisbnnumber(isbnNumber)){
+                        return isbnNumber;
+                    }
 
                 }catch(FormatException){
                     Console.WriteLine("Error|Isbn number should have numbers only");

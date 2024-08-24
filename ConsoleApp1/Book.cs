@@ -6,9 +6,9 @@ namespace ConsoleApp1{
 
         public string BookName{get;set;}
         public string AuthorName{get;set;}
-        public int ISBNnumber{get;set;}
+        public long ISBNnumber{get;set;}
 
-        public Book(string bookName,string authorName,int isbnNumber){
+        public Book(string bookName,string authorName,long isbnNumber){
             BookName=bookName;
             AuthorName=authorName;
             ISBNnumber=isbnNumber;

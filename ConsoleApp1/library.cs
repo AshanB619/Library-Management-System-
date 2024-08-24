@@ -13,5 +13,14 @@ namespace ConsoleApp1{
             return authorName.All(char.IsLetter);
         }
 
+        public bool checkisbnnumber(long isbnNumber){
+            long isbncount=isbnNumber.ToString().Length;
+            if(isbncount==13){
+                return true;
+            }
+            Console.WriteLine("Error|you can have only 13 digits for ISBN number");
+            return false;
+        }
+
     }
 }
