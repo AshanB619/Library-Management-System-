@@ -1,18 +1,17 @@
 using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
+using System.Dynamic;
+using System.Linq;
 namespace ConsoleApp1{
     class Library{
-        public string Bookname{get;set;}
-        public string Authorname{get;set;}
-        public int ISBNnumber{get;set;}
-        public void Add(string Bookname,string Authorname,int ISBNnumber,List<object>Addlist){
-            Addlist.Add(Bookname);
-            Addlist.Add(Authorname);
-            Addlist.Add(ISBNnumber);
-            foreach(object item in Addlist){
-                Console.WriteLine(item);
-            }
+        private List<Book> books=new List<Book>();
+
+        public void AddBook(Book book){
+            books.Add(book);
         }
+        public bool checkAuthorname(string authorName){
+            return authorName.All(char.IsLetter);
+        }
+
     }
 }
