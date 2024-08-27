@@ -15,6 +15,7 @@ namespace ConsoleApp1
 
             Book book=new Book(bookName,authorNmae,isbnNumber,bookType);
             library.AddBook(book);
+            library.Savetofile(book);
 
         }
 

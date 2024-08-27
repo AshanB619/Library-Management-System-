@@ -14,6 +14,7 @@ namespace ConsoleApp1{
             AuthorName=authorName;
             ISBNnumber=isbnNumber;
             BookType=bookType;
+            
         }
     }
 }

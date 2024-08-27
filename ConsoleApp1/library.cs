@@ -7,10 +7,12 @@ using System.Net.Security;
 using System.Web;
 namespace ConsoleApp1{
     class Library{
-        private List<Book> books=new List<Book>();
-
+        private List<List<Book>> books = new List<List<Book>>();
+        public string Filepath=@"C:\Users\user\Desktop\myprojectc\Library-Management-System-\ctext.txt";
         public void AddBook(Book book){
-            books.Add(book);
+            List<Book>sub_books=new List<Book>();
+            sub_books.Add(book);
+            books.Add(sub_books);
         }
         public bool checkAuthorname(string authorName){
             return authorName.All(char.IsLetter);
@@ -45,6 +47,20 @@ namespace ConsoleApp1{
                 Console.WriteLine("Error|you can enter only numbers 1-8");
             }
             return"-1";
+        }
+
+        public void Savetofile(Book book){
+            try{
+                using(StreamWriter writercfile=new StreamWriter(Filepath)){
+                    foreach(var sublist in books){
+                       foreach(var subbook in sublist){
+                         writercfile.WriteLine($"{book.BookName},{book.AuthorName},{book.ISBNnumber},{book.BookType}");
+                       }
+                    }
+                }
+            }catch(Exception e){
+                Console.WriteLine("Error when writing on file");
+            }
         }
 
     }
