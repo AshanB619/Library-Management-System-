@@ -14,8 +14,11 @@ namespace ConsoleApp1
             string bookType=GetType(library);
 
             Book book=new Book(bookName,authorNmae,isbnNumber,bookType);
+            library.readfiledata();
             library.AddBook(book);
             library.Savetofile(book);
+            library.display();
+            
 
         }
 

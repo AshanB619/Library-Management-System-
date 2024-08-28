@@ -14,6 +14,13 @@ namespace ConsoleApp1{
             sub_books.Add(book);
             books.Add(sub_books);
         }
+        public void display(){
+            foreach(var inner in books){
+                foreach(var inner1 in inner){
+                    Console.WriteLine($"Book Name: {inner1.BookName}, Author Name: {inner1.AuthorName}, ISBN Number: {inner1.ISBNnumber}, Book Type: {inner1.BookType}");
+                }
+            }
+        }
         public bool checkAuthorname(string authorName){
             return authorName.All(char.IsLetter);
         }
@@ -54,12 +61,29 @@ namespace ConsoleApp1{
                 using(StreamWriter writercfile=new StreamWriter(Filepath)){
                     foreach(var sublist in books){
                        foreach(var subbook in sublist){
-                         writercfile.WriteLine($"{book.BookName},{book.AuthorName},{book.ISBNnumber},{book.BookType}");
+                         writercfile.WriteLine($"{subbook.BookName},{subbook.AuthorName},{subbook.ISBNnumber},{subbook.BookType}");
                        }
                     }
                 }
             }catch(Exception e){
                 Console.WriteLine("Error when writing on file");
+            }
+        }
+
+        public void readfiledata(){
+            try{
+                using(StreamReader readfile=new StreamReader(Filepath)){
+                    string line;
+                    while((line=readfile.ReadLine())!=null){
+                        string[] data=line.Split(',');
+                        Book book1=new Book(data[0],data[1],long.Parse(data[2]),data[3]);
+                        List<Book>subbooks=new List<Book>();   
+                        subbooks.Add(book1);
+                        books.Add(subbooks);                    
+                    }
+                }
+            }catch(Exception e){
+                Console.WriteLine("error when reading file");
             }
         }
 
