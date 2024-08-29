@@ -13,8 +13,11 @@ namespace ConsoleApp1{
             BookName=bookName;
             AuthorName=authorName;
             ISBNnumber=isbnNumber;
-            BookType=bookType;
-            
+            BookType=bookType;           
+        }
+
+        public Book(long isbnNumber){
+            ISBNnumber=isbnNumber;
         }
     }
 }

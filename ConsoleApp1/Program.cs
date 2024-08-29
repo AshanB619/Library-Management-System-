@@ -10,11 +10,15 @@ namespace ConsoleApp1
             Library library = new Library();
             library.readfiledata();
 
-            Book newBook = GetBookDetails(library);
+            //Book Book1 = GetBookDetails(library);
+            //library.AddBook(Book1);
+            //library.Savetofile(Book1);
+            //library.display();
+            
+            long isbnNumber=Editdetails();
+            Book Book2=new Book(isbnNumber);
+            library.Editdata(Book2);
 
-            library.AddBook(newBook);
-            library.Savetofile(newBook);
-            library.display();
         }
 
         public static Book GetBookDetails(Library library)
@@ -99,6 +103,18 @@ namespace ConsoleApp1
             string bookType = GetType();
 
             return new Book(bookName, authorName, isbnNumber, bookType);
+        }
+
+        public static long Editdetails(){
+            while(true){
+                try{
+                    Console.WriteLine("Enter ISBN number to Edit the Data");
+                    long isbnNumber = long.Parse(Console.ReadLine());
+                    return isbnNumber;
+                }catch(FormatException){
+                    Console.WriteLine("Error|you can enter only ISBN number");
+                }
+            }
         }
     }
 }

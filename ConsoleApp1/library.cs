@@ -94,5 +94,17 @@ namespace ConsoleApp1{
             }
         }
 
+        public void Editdata(Book book){
+                foreach(var inner in books){
+                    foreach(var inner1 in inner){
+                        if(inner1.ISBNnumber==book.ISBNnumber){
+                            Console.WriteLine($"Book Name: {inner1.BookName}, Author Name: {inner1.AuthorName}, ISBN Number: {inner1.ISBNnumber}, Book Type: {inner1.BookType}");
+                        }                      
+                }
+            }
+            Console.WriteLine("Error|ISBN number not found");
+            
+        }
+
     }
 }
