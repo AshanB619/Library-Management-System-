@@ -26,12 +26,19 @@ namespace ConsoleApp1{
         }
 
         public bool checkisbnnumber(long isbnNumber){
-            long isbncount=isbnNumber.ToString().Length;
-            if(isbncount==13){
-                return true;
+            if(isbnNumber.ToString().Length!=13){
+                Console.WriteLine("Error | You can have only 13 digits for ISBN number.");
+                return false;
             }
-            Console.WriteLine("Error|you can have only 13 digits for ISBN number");
-            return false;
+            foreach(var booklist in books){
+                foreach(var book in booklist){
+                    if(book.ISBNnumber==isbnNumber){
+                        Console.WriteLine("Error | ISBN number should be identical.");
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
         public string getbooktype(int chechtype){
             if(chechtype==1){

@@ -7,79 +7,98 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Library library=new Library();
-            string bookName=GetBookName();
-            string authorNmae=GetAuthorName(library);
-            long isbnNumber=Getisbnnumber(library);
-            string bookType=GetType(library);
-
-            Book book=new Book(bookName,authorNmae,isbnNumber,bookType);
+            Library library = new Library();
             library.readfiledata();
-            library.AddBook(book);
-            library.Savetofile(book);
+
+            Book newBook = GetBookDetails(library);
+
+            library.AddBook(newBook);
+            library.Savetofile(newBook);
             library.display();
-            
-
         }
 
-        public static string GetBookName(){
-            Console.WriteLine("enter book name");
-            return Console.ReadLine();
-        }
-        public static string GetAuthorName(Library library){
-            while(true){
-                Console.WriteLine("Enter author name:");
-                string authorName = Console.ReadLine();
-
-                if(library.checkAuthorname(authorName)){
-                    return authorName;
-                }else{
-                    Console.WriteLine("Error|Author Name can have only letters");
-
-                }
+        public static Book GetBookDetails(Library library)
+        {
+            string GetBookName()
+            {
+                Console.WriteLine("Enter book name:");
+                return Console.ReadLine();
             }
-        }
-        public static long Getisbnnumber(Library library){
-            while(true){
-                try{
-                    Console.WriteLine("Enter ISBN number");
-                    long isbnNumber=long.Parse(Console.ReadLine());
-                    if(library.checkisbnnumber(isbnNumber)){
-                        return isbnNumber;
+
+            string GetAuthorName()
+            {
+                while (true)
+                {
+                    Console.WriteLine("Enter author name:");
+                    string authorName = Console.ReadLine();
+
+                    if (library.checkAuthorname(authorName))
+                    {
+                        return authorName;
                     }
-
-                }catch(FormatException){
-                    Console.WriteLine("Error|Isbn number should have numbers only");
-
-                }
-            }
-        }
-
-        public static string GetType(Library library){
-            while(true){
-                try{
-                    Console.WriteLine("1)Fiction");
-                    Console.WriteLine("2)Biography");
-                    Console.WriteLine("3)History");
-                    Console.WriteLine("4)Technology");
-                    Console.WriteLine("5)Social Sciences");
-                    Console.WriteLine("6)Humanities");
-                    Console.WriteLine("7)Encyclopedias");
-                    Console.WriteLine("8)Atlases");
-                    Console.WriteLine("Enter Type of Book:");
-                    int booktype =int.Parse(Console.ReadLine());
-                    if(library.getbooktype(booktype)!="-1"){
-                        return library.getbooktype(booktype);
+                    else
+                    {
+                        Console.WriteLine("Error | Author Name can have only letters");
                     }
-                }catch(FormatException){
-                    Console.WriteLine("Error| you can enter only numbers");
                 }
-
-
             }
-        }
 
-       
-        
+            long GetIsbnNumber()
+            {
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("Enter ISBN number:");
+                        long isbnNumber = long.Parse(Console.ReadLine());
+                        if (library.checkisbnnumber(isbnNumber))
+                        {
+                            return isbnNumber;
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Error | ISBN number should have numbers only");
+                    }
+                }
+            }
+
+            string GetType()
+            {
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("1) Fiction");
+                        Console.WriteLine("2) Biography");
+                        Console.WriteLine("3) History");
+                        Console.WriteLine("4) Technology");
+                        Console.WriteLine("5) Social Sciences");
+                        Console.WriteLine("6) Humanities");
+                        Console.WriteLine("7) Encyclopedias");
+                        Console.WriteLine("8) Atlases");
+                        Console.WriteLine("Enter Type of Book:");
+                        int booktype = int.Parse(Console.ReadLine());
+                        string bookType = library.getbooktype(booktype);
+
+                        if (bookType != "-1")
+                        {
+                            return bookType;
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        Console.WriteLine("Error | You can enter only numbers");
+                    }
+                }
+            }
+
+            string bookName = GetBookName();
+            string authorName = GetAuthorName();
+            long isbnNumber = GetIsbnNumber();
+            string bookType = GetType();
+
+            return new Book(bookName, authorName, isbnNumber, bookType);
+        }
     }
 }
