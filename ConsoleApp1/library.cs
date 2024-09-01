@@ -94,17 +94,41 @@ namespace ConsoleApp1{
             }
         }
 
-        public void Editdata(Book book){
-                foreach(var inner in books){
-                    foreach(var inner1 in inner){
-                        if(inner1.ISBNnumber==book.ISBNnumber){
-                            Console.WriteLine($"Book Name: {inner1.BookName}, Author Name: {inner1.AuthorName}, ISBN Number: {inner1.ISBNnumber}, Book Type: {inner1.BookType}");
-                        }                      
+        public bool displaydetails(Book book){
+            foreach(var inner in books){
+                 foreach(var inner1 in inner){
+                    if(inner1.ISBNnumber==book.ISBNnumber){
+                        Console.WriteLine($"Book Name: {inner1.BookName}, Author Name: {inner1.AuthorName}, ISBN Number: {inner1.ISBNnumber}, Book Type: {inner1.BookType}");
+                        return true;
+                    }
+                 }
+            }
+            return false;       
+        }
+
+        public bool isisbnexists(long isbnNumber){
+            foreach(var booklist in books ){
+                foreach(var book in booklist){
+                    if(book.ISBNnumber==isbnNumber){
+                        return true;
+                    }
                 }
             }
-            Console.WriteLine("Error|ISBN number not found");
-            
+            return false;
         }
+
+        public Book getdetailsbyisbn(long isbnNumber){
+            foreach(var booklist in books){
+                foreach(var book in booklist){
+                    if(book.ISBNnumber==isbnNumber){
+                        return book;
+                    }
+                }
+            }
+            return null;
+        }
+
+        
 
     }
 }

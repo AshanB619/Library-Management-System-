@@ -14,10 +14,10 @@ namespace ConsoleApp1
             //library.AddBook(Book1);
             //library.Savetofile(Book1);
             //library.display();
+
+            Editbookdetails(library);
+
             
-            long isbnNumber=Editdetails();
-            Book Book2=new Book(isbnNumber);
-            library.Editdata(Book2);
 
         }
 
@@ -105,16 +105,28 @@ namespace ConsoleApp1
             return new Book(bookName, authorName, isbnNumber, bookType);
         }
 
-        public static long Editdetails(){
-            while(true){
-                try{
-                    Console.WriteLine("Enter ISBN number to Edit the Data");
-                    long isbnNumber = long.Parse(Console.ReadLine());
-                    return isbnNumber;
-                }catch(FormatException){
-                    Console.WriteLine("Error|you can enter only ISBN number");
+        public static void Editbookdetails(Library library){
+            long check_isbnnumber_exsist(){
+                while(true){
+                    try{
+                        Console.WriteLine("Enter ISBN number");
+                        long ISBNnumber=long.Parse(Console.ReadLine());
+                        if(library.isisbnexists(ISBNnumber)){
+                            return ISBNnumber;
+                        }else{
+                            Console.WriteLine("Error | ISBN number not found");
+                        }
+                    }catch(FormatException e){
+                        Console.WriteLine("Error | ISBN number should be only numbers.");
+                    }
                 }
             }
+
+            long isbnNumber=check_isbnnumber_exsist();
+            Book book=library.getdetailsbyisbn(isbnNumber);
+            Console.WriteLine($"1)Book Name-{book.BookName}\n2)Author Name-{book.AuthorName}\n3)ISBN Number-{book.ISBNnumber}\n4)Book Type-{book.BookType}");
         }
+        
+
     }
 }

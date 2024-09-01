@@ -15,9 +15,5 @@ namespace ConsoleApp1{
             ISBNnumber=isbnNumber;
             BookType=bookType;           
         }
-
-        public Book(long isbnNumber){
-            ISBNnumber=isbnNumber;
-        }
     }
 }
