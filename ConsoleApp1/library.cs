@@ -128,6 +128,10 @@ namespace ConsoleApp1{
             return null;
         }
 
+        public void Editnameofbook(int number){
+            
+        }
+
         
 
     }
