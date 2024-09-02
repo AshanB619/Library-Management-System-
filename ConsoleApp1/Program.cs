@@ -13,7 +13,6 @@ namespace ConsoleApp1
             //Book Book1 = GetBookDetails(library);
             //library.AddBook(Book1);
             //library.Savetofile(Book1);
-            //library.display();
 
             Editbookdetails(library);
 
@@ -122,38 +121,47 @@ namespace ConsoleApp1
                 }
             }
 
-            void editdetails(int choise_edit){
-                while(true){
-                    try{
-                        switch(choise_edit){
-                            case 1:
-                              Console.WriteLine("1");
-                              break;
-                            case 2:
-                               Console.WriteLine("2");
-                               break;
-                            case 3:
-                               Console.WriteLine("3");
-                               break;
-                            case 4:
-                               Console.WriteLine("4");
-                               break;
-                            default:
-                               Console.WriteLine("error");
-                               break;      
-                        }
-                        break;                        
-                    }catch(FormatException e){
-                        Console.WriteLine("Error | you can enter only numbers.");
-                    }
+            void editdetails(int choise_edit,Book book){
+                switch(choise_edit){
+                    case 1:
+                        Console.WriteLine("Enter new book name-");
+                        string newbookname=Console.ReadLine();
+                        library.Editnameofbook(book.ISBNnumber,newbookname);
+                        break;
+                    case 2:
+                        Console.WriteLine("2");
+                        break;
+                    case 3:
+                        Console.WriteLine("3");
+                        break;
+                    case 4:
+                        Console.WriteLine("4");
+                        break;
+                    default:
+                        Console.WriteLine("error");
+                        break;      
                 }
+                
             }
             long isbnNumber=check_isbnnumber_exsist();
             Book book=library.getdetailsbyisbn(isbnNumber);
             Console.WriteLine($"1)Book Name-{book.BookName}\n2)Author Name-{book.AuthorName}\n3)ISBN Number-{book.ISBNnumber}\n4)Book Type-{book.BookType}");
-            Console.WriteLine("Enter number you want to edit");
-            int choise_edit=int.Parse(Console.ReadLine());
-            editdetails(choise_edit);          
+            while(true){
+                try{
+                    Console.WriteLine("Enter number you need to change");
+                    int choise_edit=int.Parse(Console.ReadLine());
+                    if(choise_edit>4){
+                        Console.WriteLine("Error | you can enter number between 1-4");
+                        continue;
+                    }
+                    editdetails(choise_edit,book);
+                    break;
+
+                }catch(FormatException e){
+                    Console.WriteLine("Error | You can enter only numbers.");
+            }
+            }
+            library.display();
         }
         
 

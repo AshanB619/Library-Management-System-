@@ -128,7 +128,15 @@ namespace ConsoleApp1{
             return null;
         }
 
-        public void Editnameofbook(int number){
+        public void Editnameofbook(long isbnNumber,string newbookname){
+            foreach(var booklist in books){
+                foreach(var book in booklist){
+                    if(book.ISBNnumber==isbnNumber){
+                        book.BookName=newbookname;
+                        return;
+                    }
+                }
+            }
             
         }
 
