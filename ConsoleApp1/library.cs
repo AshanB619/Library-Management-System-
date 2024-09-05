@@ -142,16 +142,37 @@ namespace ConsoleApp1{
             
         }
 
-        public Book searchbookall(string booktype){
-            foreach(var booklist in books){
-                foreach(var book in booklist){
-                    if(book.BookType==booktype){
-                        return book;
-                    }
+public void searchbookall(string booktype)
+{
+    bool checktype = false;
+
+    foreach (var booklist in books)
+    {
+        foreach (var book in booklist)
+        {
+            if (book.BookType == booktype)
+            {
+                if (!checktype)
+                {
+                    // Print the header with proper alignment only once
+                    Console.WriteLine($"{"Book Name",-30} {"Author Name",-30} {"ISBN Number",-20}");
+                    Console.WriteLine(new string('-', 80)); // Add a separator line
+                    checktype = true;
                 }
+
+                // Print each book's details with aligned columns
+                Console.WriteLine($"{book.BookName,-30} {book.AuthorName,-30} {book.ISBNnumber,-20}");
             }
-            return null;
         }
+    }
+
+    if (!checktype)
+    {
+        Console.WriteLine("No any book type found");
+    }
+}
+
+
 
         
 

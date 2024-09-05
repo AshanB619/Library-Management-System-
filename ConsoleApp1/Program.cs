@@ -214,8 +214,7 @@ namespace ConsoleApp1
                         continue;
                     }
                     string bookType=library.getbooktype(Booktypenumber);
-                    Book book2=library.searchbookall(bookType);
-                    Console.WriteLine(book2.BookName);
+                    library.searchbookall(bookType);
                 }catch(FormatException e){
                     Console.WriteLine("Error | You can enter only numbers");
                 }
