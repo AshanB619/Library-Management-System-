@@ -142,6 +142,17 @@ namespace ConsoleApp1{
             
         }
 
+        public Book searchbookall(string booktype){
+            foreach(var booklist in books){
+                foreach(var book in booklist){
+                    if(book.BookType==booktype){
+                        return book;
+                    }
+                }
+            }
+            return null;
+        }
+
         
 
     }

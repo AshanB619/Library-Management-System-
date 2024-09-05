@@ -14,7 +14,8 @@ namespace ConsoleApp1
             //library.AddBook(Book1);
             //library.Savetofile(Book1);
 
-            Editbookdetails(library);
+           // Editbookdetails(library);
+            ShowbooksAll(library);
 
             
 
@@ -193,6 +194,32 @@ namespace ConsoleApp1
             }
             }
             library.Savetofile(book);
+        }
+
+        public static void ShowbooksAll(Library library){
+            while(true){
+                try{
+                    Console.WriteLine("1) Fiction");
+                    Console.WriteLine("2) Biography");
+                    Console.WriteLine("3) History");
+                    Console.WriteLine("4) Technology");
+                    Console.WriteLine("5) Social Sciences");
+                    Console.WriteLine("6) Humanities");
+                    Console.WriteLine("7) Encyclopedias");
+                    Console.WriteLine("8) Atlases");
+                    Console.WriteLine("Enter Type of Book:");
+                    int Booktypenumber=int.Parse(Console.ReadLine());
+                    if(Booktypenumber>8 || Booktypenumber<=0){
+                        Console.WriteLine("Error | You can enter only numbers 1-8");
+                        continue;
+                    }
+                    string bookType=library.getbooktype(Booktypenumber);
+                    Book book2=library.searchbookall(bookType);
+                    Console.WriteLine(book2.BookName);
+                }catch(FormatException e){
+                    Console.WriteLine("Error | You can enter only numbers");
+                }
+            }
         }
         
         
