@@ -15,7 +15,9 @@ namespace ConsoleApp1
             //library.Savetofile(Book1);
 
            // Editbookdetails(library);
-            ShowbooksAll(library);
+            //ShowbooksAll(library);
+            Deletebook(library);
+            library.display();
 
             
 
@@ -215,11 +217,33 @@ namespace ConsoleApp1
                     }
                     string bookType=library.getbooktype(Booktypenumber);
                     library.searchbookall(bookType);
+                    break;
                 }catch(FormatException e){
                     Console.WriteLine("Error | You can enter only numbers");
                 }
             }
         }
+
+        public static void Deletebook(Library library){
+            while (true)
+            {
+                try{
+                    Console.WriteLine("Enter ISBN number:");
+                    long isbnNumber = long.Parse(Console.ReadLine());
+                    if(library.isisbnexists(isbnNumber)){
+                        library.Deletebook(isbnNumber);
+                    }else{
+                        Console.WriteLine("Error | ISBN number not found");
+                        continue;
+                    }
+                    break;
+
+                }catch(FormatException e){
+                    Console.WriteLine("Error | ISBN number should have numbers only");
+                }
+            }
+        }
+        
         
         
 
