@@ -4,6 +4,7 @@ using System.Dynamic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Web;
 namespace ConsoleApp1{
     class Library{
@@ -165,6 +166,48 @@ namespace ConsoleApp1{
         }
         public void Deletebook(long isbnNumber){
             books.RemoveAll(booklist => booklist.Any(book => book.ISBNnumber == isbnNumber));
+        }
+        public void Searchbook(string bookName){
+            bool check_bookname_is_exsist=false;
+            foreach(var booklist in books){
+                foreach(var book in booklist){
+                    if(bookName.ToLower()==book.BookName.ToLower()){
+                        Console.WriteLine("This is a exact book you searched\n");
+                        Console.WriteLine($"Book Name-{book.BookName}\nAuthor-{book.AuthorName}\nISBN Number-{book.ISBNnumber}\nBook Type-{book.BookType}");  
+                        check_bookname_is_exsist=true;                     
+                    }
+                }
+            }
+            bool sub_check_bookname_is_exsist=false;
+            if(!check_bookname_is_exsist){
+                foreach(var booklist in books){
+                    foreach(var book in booklist){
+                        if(book.BookName.Length>=3 && bookName.Length>=3){
+                            if(book.BookName.Substring(0,3)==bookName.Substring(0,3)){
+                                Console.WriteLine("you reffer to this?\n");
+                                Console.WriteLine($"Book Name-{book.BookName}\nAuthor-{book.AuthorName}\nISBN Number-{book.ISBNnumber}\nBook Type-{book.BookType}");
+                                sub_check_bookname_is_exsist=true;
+                            }
+                        }
+                    }
+                }
+            }
+            bool sub_sub_check_bookname_is_exsist=false;
+            if(!sub_check_bookname_is_exsist){
+                foreach(var booklist in books){
+                    foreach(var book in booklist){
+                        if(book.BookName[0]==bookName[0]){
+                            Console.WriteLine("Nerrest result");
+                            Console.WriteLine($"Book Name-{book.BookName}\nAuthor-{book.AuthorName}\nISBN Number-{book.ISBNnumber}\nBook Type-{book.BookType}");
+                            sub_sub_check_bookname_is_exsist=true;
+                        }
+                    }
+                }
+            }
+            if(!sub_sub_check_bookname_is_exsist){
+                Console.WriteLine("no result found");
+            }
+            
         }
 
     }

@@ -16,8 +16,9 @@ namespace ConsoleApp1
 
            // Editbookdetails(library);
             //ShowbooksAll(library);
-            Deletebook(library);
-            library.display();
+            //Deletebook(library);
+            //library.display();
+            library.Searchbook("madolduwa");
 
             
 
@@ -240,6 +241,17 @@ namespace ConsoleApp1
 
                 }catch(FormatException e){
                     Console.WriteLine("Error | ISBN number should have numbers only");
+                }
+            }
+        }
+        public  static void Searchbook(){
+            while(true){
+                try{
+                    Console.WriteLine("Enter Book Name To Find:");
+                    string bookName=Console.ReadLine();
+                    
+                }catch(FormatException e){
+                    
                 }
             }
         }
