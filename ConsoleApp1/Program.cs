@@ -18,7 +18,7 @@ namespace ConsoleApp1
             //ShowbooksAll(library);
             //Deletebook(library);
             //library.display();
-            library.Searchbook("madolduwa");
+            Searchbook(library);
 
             
 
@@ -244,14 +244,16 @@ namespace ConsoleApp1
                 }
             }
         }
-        public  static void Searchbook(){
+        public  static void Searchbook(Library library){
             while(true){
                 try{
                     Console.WriteLine("Enter Book Name To Find:");
                     string bookName=Console.ReadLine();
+                    library.Searchbook(bookName);
+
                     
                 }catch(FormatException e){
-                    
+                    Console.WriteLine("Not Valid input");
                 }
             }
         }
