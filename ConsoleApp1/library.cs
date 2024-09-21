@@ -177,7 +177,7 @@ namespace ConsoleApp1{
                     {
                           if (bookName.ToLower() == book.BookName.ToLower())
                           {
-                            Console.WriteLine("This is the exact book you searched\n");
+                            Console.WriteLine("Exact match found for your search:\n");
                             Console.WriteLine($"Book Name - {book.BookName}\nAuthor - {book.AuthorName}\nISBN Number - {book.ISBNnumber}\nBook Type - {book.BookType}");
                             check_bookname_is_exsist = true;
                           }
@@ -199,11 +199,12 @@ namespace ConsoleApp1{
                                       {
                                             if (!similarBookPrinted)
                                             {
-                                                Console.WriteLine("You might be referring to this?\n");
+                                                Console.WriteLine("Did you mean one of these similar books?\n");
+                                                Console.WriteLine($"{"Book Name",-30} {"Author Name",-30} {"ISBN Number",-30}{"Book Type",-30}");
                                                 similarBookPrinted = true;
                                             }
 
-                                            Console.WriteLine($"Book Name - {book.BookName}\nAuthor - {book.AuthorName}\nISBN Number - {book.ISBNnumber}\nBook Type - {book.BookType}");
+                                            Console.WriteLine($"{book.BookName,-31}{book.AuthorName,-31}{book.ISBNnumber,-30}{book.BookType,-31}");
                                             sub_check_bookname_is_exsist = true;
                                       }
                                 }
@@ -224,11 +225,12 @@ namespace ConsoleApp1{
                                 {
                                       if (!nearestResultPrinted)
                                       {
-                                        Console.WriteLine("Nearest result:\n");
+                                        Console.WriteLine("Here’s the closest match based on your input:\n");
+                                        Console.WriteLine($"{"Book Name",-30} {"Author Name",-30} {"ISBN Number",-30}{"Book Type",-30}");
                                         nearestResultPrinted = true;
                                       }
 
-                                      Console.WriteLine($"Book Name - {book.BookName} Author - {book.AuthorName}\nISBN Number - {book.ISBNnumber}\nBook Type - {book.BookType}");
+                                      Console.WriteLine($"{book.BookName,-31}{book.AuthorName,-31}{book.ISBNnumber,-30}{book.BookType,-31}");
                                       sub_sub_check_bookname_is_exsist = true;
                                 }
                           }
@@ -237,7 +239,7 @@ namespace ConsoleApp1{
 
               if (!sub_sub_check_bookname_is_exsist && !check_bookname_is_exsist)
               {
-                    Console.WriteLine("No result found");
+                    Console.WriteLine("No result found|Try again");
               }
         }
 

@@ -250,8 +250,7 @@ namespace ConsoleApp1
                     Console.WriteLine("Enter Book Name To Find:");
                     string bookName=Console.ReadLine();
                     library.Searchbook(bookName);
-
-                    
+                    break;                   
                 }catch(FormatException e){
                     Console.WriteLine("Not Valid input");
                 }
