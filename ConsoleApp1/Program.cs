@@ -9,8 +9,7 @@ namespace ConsoleApp1
         {
             Library library = new Library();
             library.readfiledata();
-
-            //Book Book1 = GetBookDetails(library);
+            Book Book1 = GetBookDetails(library);
             //library.AddBook(Book1);
             //library.Savetofile(Book1);
 
@@ -18,7 +17,7 @@ namespace ConsoleApp1
             //ShowbooksAll(library);
             //Deletebook(library);
             //library.display();
-            Searchbook(library);
+           // Searchbook(library);
 
             
 
