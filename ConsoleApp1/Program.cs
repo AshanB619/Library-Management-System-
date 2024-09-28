@@ -7,9 +7,44 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            Library library = new Library();
-            library.readfiledata();
-            Book Book1 = GetBookDetails(library);
+            while(true){
+                Library library = new Library();
+                Console.WriteLine("Enter Number:\n1) To Add Book\n2) To Edit Book\n3) To Display Summary\n4) To Delete Book\n5) To Search Book\n6) Exit");
+                string choice =Console.ReadLine();
+                switch(choice){
+                    case "1":
+                      Book Book1 = GetBookDetails(library);
+                      library.AddBook(Book1);
+                      library.Savetofile(Book1);
+                      break;
+                    case "2":
+                      Book Book2 = GetBookDetails(library);
+                      Editbookdetails(library);
+                      library.Savetofile(Book2);
+                      break;
+                    case "3":
+                      ShowbooksAll(library);
+                      break;
+                    case "4":
+                      Book Book3 = GetBookDetails(library);
+                      Deletebook(library);
+                      library.Savetofile(Book3);
+                      break;
+                    case "5":
+                      Searchbook(library);
+                      break;
+                    case "6":
+                      return;
+                    default:
+                      Console.WriteLine("Invalid choice Enter value between 1-6");
+                      continue;
+                    
+                }
+
+            }
+            //Library library = new Library();
+            //library.readfiledata();
+           // Book Book1 = GetBookDetails(library);
             //library.AddBook(Book1);
             //library.Savetofile(Book1);
 
